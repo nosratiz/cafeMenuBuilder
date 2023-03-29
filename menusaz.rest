@@ -1,0 +1,9 @@
+@baseUrl=http://localhost:3000
+
+POST {{baseUrl}}/account/login
+Content-Type: application/json
+
+{
+  "email": "nimanosrati93@gmail.com",
+  "password":"nima1234!"
+}

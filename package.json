@@ -1,0 +1,46 @@
+{
+  "name": "menusaz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
+    "build": "tsc",
+    "postinstall": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7",
+    "tsc-watch": "^6.0.0",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.1",
+    "bcrypt": "^5.1.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "joi": "^17.9.1",
+    "jsonwebtoken": "^9.0.0",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.4",
+    "mongoose": "^7.0.3",
+    "morgan": "^1.10.0"
+  }
+}
