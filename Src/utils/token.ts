@@ -3,9 +3,13 @@ import { IUser } from '../interfaces/user.interface';
 import Token from './interfaces/token.interface';
 
 export const createToken = (user: IUser): string =>
-    jwt.sign({ id: user._id }, process.env.JWT_SECRET as jwt.Secret, {
-        expiresIn: '1d',
-    });
+    jwt.sign(
+        { id: user._id, roles: user.roles.map((role) => role.name) },
+        process.env.JWT_SECRET as jwt.Secret,
+        {
+            expiresIn: '1d',
+        }
+    );
 
 export const verifyToken = async (
     token: string

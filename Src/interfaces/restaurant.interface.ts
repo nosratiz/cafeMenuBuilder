@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Document, ObjectId } from 'mongoose';
 
 export interface IRestaurant extends Document {
     name: string;
@@ -13,7 +13,7 @@ export interface IRestaurant extends Document {
         }
     ];
     location: { lat: number; lng: number };
-    userId: { type: string; ref: 'User'};
+    userId: { type: ObjectId ; ref: 'User'};
     createdAt: Date;
     updatedAt: Date;
     isDeleted: boolean;

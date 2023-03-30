@@ -1,4 +1,5 @@
 @baseUrl=http://localhost:3000
+@accessToken=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjRhNTRiODlhMjJhOGI0OWM5ODdlYSIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTY4MDIxMDI0MCwiZXhwIjoxNjgwMjk2NjQwfQ.eVXyQEkIxQV1TrOFMgK5D8qMtRDYNdaPdlsrop5qQvU
 
 POST {{baseUrl}}/account/login
 Content-Type: application/json
@@ -7,3 +8,16 @@ Content-Type: application/json
   "email": "nimanosrati93@gmail.com",
   "password":"nima1234!"
 }
+
+
+###
+GET {{baseUrl}}/user
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+
+
+###
+GET {{baseUrl}}/user/6424a54b89a22a8b49c987ea
+Content-Type: application/json
+Authorization: {{accessToken}}
