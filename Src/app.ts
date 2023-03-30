@@ -7,11 +7,13 @@ import Controller from './utils/interfaces/controller.interface';
 import ErrorMiddleware from './middleware/error.middleware';
 import mongoose from 'mongoose';
 import SeedData from './config/SeedData';
+import fileUpload from './config/UploadConfig';
 
 class app {
     public express: Application;
     public port: number;
     public seedData = new SeedData();
+    public fileUpload = new fileUpload();
 
     constructor(controllers: Controller[], port: number) {
         this.express = express();
@@ -29,6 +31,7 @@ class app {
         this.express.use(morgan('dev'));
         this.express.use(express.json());
         this.express.use(express.urlencoded({ extended: false }));
+        this.express.use(this.fileUpload.multerConfig);
         this.express.use(compression());
     }
 

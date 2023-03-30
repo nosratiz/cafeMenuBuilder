@@ -8,11 +8,13 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         trim: true,
+        index:true
     },
     family: {
         type: String,
         required: true,
         trim: true,
+        index:true
         
     },
     email: {
@@ -22,6 +24,7 @@ const UserSchema = new Schema({
     },
     mobile: {
         type: String,
+        index:true,
         trim: true,
     },
     password: {
@@ -42,6 +45,7 @@ const UserSchema = new Schema({
     created_at: {
         type: Date,
         default: Date.now,
+        index:true
     },
     updated_at: {
         type: Date,
@@ -53,6 +57,7 @@ const UserSchema = new Schema({
     isDeleted: {
         type: Boolean,
         default: false,
+        index:true
     },
     confirmCode: {
         type: String,
