@@ -4,7 +4,9 @@ import multer from 'multer';
 import { randomUUID } from 'crypto';
 
 class fileUpload {
-    public mimeTypes : String[] = process.env.File_Mime_Extension as unknown as string[];
+    public mimeTypes: String[] = process.env.File_Mime_Extension
+        ? process.env.File_Mime_Extension.split(',')
+        : [];
 
     constructor() {
         this.createFileFolder();
@@ -30,17 +32,22 @@ class fileUpload {
     }
 
     public fileFilter(req: any, file: any, cb: Function): void {
-        if (this.mimeTypes.includes(file.mimetype)) {
-            cb(null, true);
-        } else {
+        if (!this.mimeTypes.includes(file.mimetype)) {
             cb(new Error('Invalid file type'));
         }
+
+        if (file.size > Number(process.env.File_Size)) {
+            cb(new Error('File size is too large'));
+        }
+
+        cb(null, true);
     }
 
     public multerConfig(): multer.Multer | any {
         return multer({
             storage: this.storage(),
             fileFilter: this.fileFilter,
+            limits: { fileSize: Number(process.env.File_Size) },
         }).single('file');
     }
 }
