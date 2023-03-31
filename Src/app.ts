@@ -26,7 +26,7 @@ class app {
         this.initializeMiddleware();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
-        this.initializeRedisConnection();
+    
     }
 
     private initializeMiddleware(): void {
@@ -58,14 +58,7 @@ class app {
         this.seedData.seed();
     }
 
-    private initializeRedisConnection(): void {
-     
-        const redisClient = redis.createClient();
-
-        redisClient.on('error', (error) => {
-            console.log(error);
-        });
-    }
+  
 
     public listen(): void {
         this.express.listen(this.port, () => {

@@ -7,7 +7,7 @@ class RestaurantService {
     private restaurant = RestaurantModel;
 
     public async findAll(page: number, limit: number): Promise<IPagination> {
-        var [restaurants, count] = await Promise.all([
+        const [restaurants, count] = await Promise.all([
             this.restaurant
                 .find({ isDeleted: false })
                 .populate('userId', 'name family')

@@ -8,6 +8,7 @@ class SeedData {
         await this.seedRole();
         await this.seedUser();
         await this.seedRestaurant();
+        await this.seedMenu();
     }
 
     private async seedRole() {

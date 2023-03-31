@@ -1,25 +1,30 @@
-import * as redis from 'redis';
-import { promisify } from 'util';
+import Redis from 'ioredis';
 
 class RedisExtensions {
-    private redisClient: any;
-    private getAsync: any;
+    private redis;
 
     constructor() {
-        this.redisClient = redis.createClient();
-        this.getAsync = promisify(this.redisClient.get).bind(this.redisClient);
+        const { REDIS_HOST, REDIS_PORT } = process.env;
+        this.redis = new Redis({
+            host: REDIS_HOST,
+            port: Number(REDIS_PORT),
+        });
     }
 
     public async get(key: string): Promise<string | null> {
-        try {
-            const data = await this.getAsync(key);
-            return data;
-        } catch (err) {
-            console.error(err);
-            return null;
-        } finally {
-            this.redisClient.quit();
-        }
+        return await this.redis.get(key);
+    }
+
+    public async set(
+        key: string,
+        value: string,
+        expire: number
+    ): Promise<void> {
+        await this.redis.set(key, value, 'EX', expire);
+    }
+
+    public async del(key: string): Promise<void> {
+        await this.redis.del(key);
     }
 }
 

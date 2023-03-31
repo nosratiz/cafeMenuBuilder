@@ -1,13 +1,19 @@
 import IPagination from '../utils/interfaces/pagination.interface';
 import HttpException from '../utils/exception/http.exceptions';
-import MenuDto, { IMenuDto } from '../dto/MenuDto';
+import MenuDto, { IMenuDto, IMenuListDto } from '../dto/MenuDto';
 import MenuModel from '../models/menu.model';
+import RedisExtensions from '../utils/redis';
 
 class MenuService {
     private menu = MenuModel;
+    private redis : RedisExtensions;
+
+    constructor() {
+        this.redis = new RedisExtensions();
+    }
 
     public async findAll(page: number, limit: number): Promise<IPagination> {
-        var [menus, count] = await Promise.all([
+        const [menus, count] = await Promise.all([
             this.menu
                 .find({ isDeleted: false })
                 .populate('restaurantId', 'name logo')
@@ -33,10 +39,14 @@ class MenuService {
     }
 
     public async findOne(id: string): Promise<IMenuDto | null | HttpException> {
-        var menu = await this.menu
-            .findOne({ id, isDeleted: false })
-            .populate('restaurantId', 'name logo')
-            .select('-isDeleted');
+        
+        console.log(id);
+        
+        const menu = await this.menu
+            .findOne({ _id: id, isDeleted: false })
+            .populate('restaurantId', 'name logo');
+
+        console.log(menu);
 
         if (!menu) {
             return null;
@@ -60,6 +70,8 @@ class MenuService {
             restaurantId,
         });
 
+        this.redis.del(`${menu.restaurantId}`);
+
         return new MenuDto().mapToMenuDto(menu);
     }
 
@@ -81,6 +93,8 @@ class MenuService {
             return null;
         }
 
+        this.redis.del(`${menu.restaurantId}`);
+
         return new MenuDto().mapToMenuDto(menu);
     }
 
@@ -95,9 +109,27 @@ class MenuService {
             return false;
         }
 
+        this.redis.del(`${menu.restaurantId}`);
+
         return true;
     }
 
+    public async findByRestaurantId(
+        restaurantId: string
+    ): Promise<IMenuListDto[]> {
+
+       const menus= await this.menu.find({ restaurantId, isDeleted: false })
+            .populate('restaurantId', 'name logo')
+            .select('-isDeleted');
+
+        let menusListDto = menus.map((menu) =>
+            new MenuDto().mapToMenuListDto(menu)
+        );
+
+        await this.redis.set(restaurantId, JSON.stringify(menusListDto), 60 * 60 * 24);
+
+        return menusListDto;
+    }
 }
 
 export default MenuService;

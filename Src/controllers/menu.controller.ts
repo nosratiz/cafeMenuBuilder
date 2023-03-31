@@ -5,6 +5,7 @@ import authenticatedMiddleware from '../middleware/authenticated.middleware';
 import MenuService from '../services/menu.service';
 import menuValidation from '../validations/menu.validation';
 import validationMiddleware from '../middleware/validation.middleware';
+import menuCache from '../cache/menu.cache';
 
 class MenuController implements Controller {
     public path = '/menu';
@@ -38,6 +39,13 @@ class MenuController implements Controller {
             `${this.path}/:id`,
             authenticatedMiddleware,
             this.deleteMenu
+        );
+
+        this.router.get(
+            `${this.path}/restaurant/:restaurantId`,
+            authenticatedMiddleware,
+            menuCache,
+            this.restaurantMenu
         );
     }
 
@@ -146,6 +154,18 @@ class MenuController implements Controller {
         }
 
         response.status(200).json();
+    };
+
+    private restaurantMenu = async (
+        request: Request,
+        response: Response,
+        next: NextFunction
+    ) => {
+        const { restaurantId } = request.params;
+
+        const menus = await this.menuService.findByRestaurantId(restaurantId);
+
+        return response.status(200).json(menus);
     };
 }
 

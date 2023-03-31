@@ -76,3 +76,27 @@ Authorization: {{accessToken}}
     "phone":"09123456789"
   }
 }
+
+
+###
+GET {{baseUrl}}/role
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+
+###
+GET {{baseUrl}}/menu
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+
+###
+GET {{baseUrl}}/menu/64271323f30a68dc5d9af74c
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+
+###
+GET {{baseUrl}}/menu/restaurant/64267261faccf790280fb29b
+Content-Type: application/json
+Authorization: {{accessToken}}
