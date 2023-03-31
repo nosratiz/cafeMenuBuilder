@@ -9,6 +9,8 @@ import mongoose from 'mongoose';
 import SeedData from './config/SeedData';
 import fileUpload from './config/UploadConfig';
 import path from 'path';
+import * as redis from 'redis';
+import { str } from 'envalid';
 
 class app {
     public express: Application;
@@ -24,6 +26,7 @@ class app {
         this.initializeMiddleware();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
+        this.initializeRedisConnection();
     }
 
     private initializeMiddleware(): void {
@@ -53,6 +56,15 @@ class app {
         mongoose.connect(`mongodb://${MONGO_PATH}`);
 
         this.seedData.seed();
+    }
+
+    private initializeRedisConnection(): void {
+     
+        const redisClient = redis.createClient();
+
+        redisClient.on('error', (error) => {
+            console.log(error);
+        });
     }
 
     public listen(): void {

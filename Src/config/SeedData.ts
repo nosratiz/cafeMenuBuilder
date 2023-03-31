@@ -1,6 +1,7 @@
 import userModel from '../models/user.model';
 import roleModel from '../models/role.model';
 import restaurantModel from '../models/restaurant.model';
+import menuModel from '../models/menu.model';
 
 class SeedData {
     public async seed() {
@@ -58,6 +59,21 @@ class SeedData {
             });
         }
     }
+
+    private async seedMenu() {
+        if ((await menuModel.countDocuments()) == 0) {
+            var restaurantId = await restaurantModel.findOne().select('_id');
+            await menuModel.create({
+               title:'pizza',
+                description:'pizza',
+                price:10000,
+                image:'image',
+                restaurantId:restaurantId
+             
+            });
+        }
+    }
+    
 }
 
 export default SeedData;

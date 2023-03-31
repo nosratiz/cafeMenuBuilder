@@ -4,6 +4,7 @@ import AccountController from './controllers/account.controller';
 import FileController from './controllers/file.controller';
 import UserController from './controllers/user.controller';
 import RestaurantController from './controllers/restaurant.controller';
+import MenuController from './controllers/menu.controller';
 
 import App from './app';
 import validateEnv from './utils/validateEnv';
@@ -16,6 +17,7 @@ const app = new App(
         new FileController(),
         new UserController(),
         new RestaurantController(),
+        new MenuController(),
     ],
     Number(process.env.PORT)
 );

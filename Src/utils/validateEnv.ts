@@ -9,6 +9,7 @@ function validateEnv(): void {
         PORT: port({ default: 3000 }),
         File_Size: num(),
         JWT_SECRET: str(),
+        REDIS_HOST: str(),
         
 
 
