@@ -1,10 +1,12 @@
 import userModel from '../models/user.model';
 import roleModel from '../models/role.model';
+import restaurantModel from '../models/restaurant.model';
 
 class SeedData {
     public async seed() {
         await this.seedRole();
         await this.seedUser();
+        await this.seedRestaurant();
     }
 
     private async seedRole() {
@@ -20,7 +22,6 @@ class SeedData {
 
     private async seedUser() {
         if ((await userModel.countDocuments()) == 0) {
-
             var roleId = await roleModel.findOne().select('_id');
             await userModel.create({
                 email: 'nimanosrati93@gmail.com',
@@ -32,6 +33,28 @@ class SeedData {
                 confirmEmail: true,
                 confirmMobile: true,
                 roles: [roleId],
+            });
+        }
+    }
+
+    private async seedRestaurant() {
+        if ((await restaurantModel.countDocuments()) == 0) {
+            var userId = await userModel.findOne().select('_id');
+            await restaurantModel.create({
+                name: 'KFC',
+                description: 'KFC',
+                logo: 'logo',
+                location: {
+                    type: 'Point',
+                    coordinates: [51.389, 35.6892],
+                },
+                address: {
+                    city: 'Tehran',
+                    state: 'Tehran',
+                    street: 'jordan',
+                    phone: '021-12345678',
+                },
+                userId: userId,
             });
         }
     }

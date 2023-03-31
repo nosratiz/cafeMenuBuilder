@@ -21,3 +21,58 @@ Authorization: {{accessToken}}
 GET {{baseUrl}}/user/6424a54b89a22a8b49c987ea
 Content-Type: application/json
 Authorization: {{accessToken}}
+
+
+
+###
+GET {{baseUrl}}/restaurant
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+###
+GET {{baseUrl}}/restaurant/64267261faccf790280fb292
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+
+###
+POST {{baseUrl}}/restaurant
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+{
+  "name": "macdonalds",
+  "logo":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fww",
+  "description":"macdonalds is a fast food restaurant",
+  "location":{
+    "lat":35.123456,
+    "lng":35.123456
+  },
+  "address":{
+    "city":"tehran",
+    "state":"tehran",
+    "street":"valiasr",
+    "phone":"09123456789"
+  }
+  }
+
+###
+PUT {{baseUrl}}/restaurant/642678d3d093f74cf69d8fb8
+Content-Type: application/json
+Authorization: {{accessToken}}
+
+{
+  "name": "macdonalds3",
+  "logo":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fww",
+  "description":"macdonalds is a fast food restaurant",
+  "location":{
+    "lat":35.123456,
+    "lng":35.123456
+  },
+  "address":{
+    "city":"tehran",
+    "state":"tehran",
+    "street":"valiasr",
+    "phone":"09123456789"
+  }
+}

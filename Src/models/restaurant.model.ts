@@ -17,25 +17,29 @@ const RestaurantSchema = new Schema({
         type: String,
         trim: true,
     },
-    address: [
-        {
-            state: {
-                type: String,
-                trim: true,
-                required: true,
-            },
-            city: {
-                type: String,
-                trim: true,
-                required: true,
-            },
-            street: {
-                type: String,
-                trim: true,
-                required: true,
-            },
+    address: {
+        type: Object,
+        state: {
+            type: String,
+            trim: true,
+            required: true,
         },
-    ],
+        city: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        street: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        phone: {
+            type: String,
+            trim: true,
+        },
+    },
+    
     location: {
         type: Object,
         lat: {

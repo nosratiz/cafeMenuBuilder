@@ -23,7 +23,8 @@ function validationMiddleware(schema: Joi.Schema): RequestHandler {
         } catch (e: any) {
             const errors: string[] = [];
             e.details.forEach((error: Joi.ValidationErrorItem) => {
-                errors.push(error.message);
+                console.log(error);
+                errors.push(error.context?.message ?? error.message);
             });
             res.status(400).send({ errors: errors });
         }

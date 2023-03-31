@@ -13,7 +13,12 @@ export interface IRestaurant extends Document {
         }
     ];
     location: { lat: number; lng: number };
-    userId: { type: ObjectId ; ref: 'User'};
+    userId: {
+        family: string;
+        name: string;
+        id: string;
+        type: ObjectId ; ref: 'User'
+};
     createdAt: Date;
     updatedAt: Date;
     isDeleted: boolean;
