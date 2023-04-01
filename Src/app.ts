@@ -11,6 +11,8 @@ import fileUpload from './config/UploadConfig';
 import path from 'path';
 import BackgroundJob from './Jobs/BackgroundJob';
 import schedule from 'node-schedule';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './config/swagger.json';
 
 class app {
     public express: Application;
@@ -25,7 +27,6 @@ class app {
         this.initializeControllers(controllers);
         this.InitializeBackgroundJobs();
         this.initializeErrorHandling();
-     
     }
 
     private initializeMiddleware(): void {
@@ -40,6 +41,7 @@ class app {
             '/uploads',
             express.static(path.join(__dirname, '../uploads'))
         );
+        this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     }
 
     private initializeControllers(controllers: Controller[]): void {
@@ -61,7 +63,10 @@ class app {
     }
 
     private InitializeBackgroundJobs(): void {
-        schedule.scheduleJob("*/2 * * * * *", BackgroundJob.SendEmail);
+        const { NODE_ENV } = process.env;
+        if (NODE_ENV === 'production') {
+            schedule.scheduleJob('*/2 * * * * *', BackgroundJob.SendEmail);
+        }
     }
 
     public listen(): void {
