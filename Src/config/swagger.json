@@ -1,0 +1,245 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "menu builder",
+        "version": "1.0.0"
+    },
+    "securityDefinitions": {
+        "jwt": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "jwt": []
+        }
+    ],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "schemes": ["http", "https"],
+
+    "paths": {
+        "/account/login": {
+            "post": {
+                "tags": ["account"],
+                "summary": "Login",
+                "description": "Login",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Login",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/accountCommand"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid email/password supplied",
+                        "schema": {
+                            "$ref": "#/definitions/apiMessage"
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": ["user"],
+                "summary": "Get all users",
+                "description": "Get all users",
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/userPagination"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "tags": ["user"],
+                "summary": "Get user by id",
+                "description": "Get user by id",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "schema": {
+                            "$ref": "#/definitions/apiMessage"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "accountCommand": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "apiMessage": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "user": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "family": {
+                    "type": "string"
+                },
+                "mobile":{
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "birthday": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "confirmEmail": {
+                    "type": "boolean"
+                },
+                "confirmMobile": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "userList": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "family": {
+                    "type": "string"
+                },
+                "mobile":{
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "confirmEmail": {
+                    "type": "boolean"
+                },
+                "confirmMobile": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "userPagination": {
+            "type": "object",
+            "properties": {
+                "total": {
+                    "type": "number"
+                },
+                "page": {
+                    "type": "number"
+                },
+                "limit": {
+                    "type": "number"
+                },
+                "TotalPages": {
+                    "type": "number"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/userList"
+                    }
+                }
+            }
+        }
+    }
+}
