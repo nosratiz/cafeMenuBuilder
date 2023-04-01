@@ -33,7 +33,7 @@ class AccountController implements Controller {
             const result = await this.userService.adminLogin(email, password);
             console.log(result);
 
-            if (result.message !== '') {
+            if (!result.data) {
                 return next(new HttpException(result.status, result.message));
             }
 

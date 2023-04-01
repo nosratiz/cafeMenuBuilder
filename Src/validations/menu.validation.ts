@@ -11,18 +11,18 @@ const menu = Joi.object({
     image: Joi.string()
         .required()
         .messages({ 'string.empty': 'Image is required' }),
-    price: Joi.number()
-        .required()
-        .greater(0)
-        .messages({
-            'string.empty': 'Price is required',
-            'number.greater': 'Price must be greater than 0',
-        }),
+    price: Joi.number().required().greater(0).messages({
+        'string.empty': 'Price is required',
+        'number.greater': 'Price must be greater than 0',
+    }),
     restaurantId: Joi.string()
         .required()
         .messages({ 'string.empty': 'Restaurant is required' })
         .external(async (value, helpers) => {
-            const restaurant = await Restaurant.findOne({ id: value });
+            const restaurant = await Restaurant.findOne({
+                id: value,
+                isDeleted: false,
+            });
             if (!restaurant) {
                 return helpers.error('any.invalid', {
                     message: 'Restaurant not found',
@@ -32,4 +32,4 @@ const menu = Joi.object({
         }),
 });
 
-export default {  menu };
+export default { menu };

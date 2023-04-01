@@ -77,7 +77,7 @@ class RestaurantController implements Controller {
 
             const result = await this.restaurantService.findOne(id);
 
-            if (result.message !== '') {
+            if (!result.data) {
                 return next(new HttpException(404, 'Restaurant not found'));
             }
 
@@ -129,7 +129,7 @@ class RestaurantController implements Controller {
                 location
             );
 
-            if (result.message !== '') {
+            if (!result.data) {
                 return next(new HttpException(404, 'Restaurant not found'));
             }
 
@@ -149,7 +149,7 @@ class RestaurantController implements Controller {
         try {
             var result = await this.restaurantService.delete(id);
 
-            if (result.message !== '') {
+            if (!result.data) {
                 return next(new HttpException(404, 'Restaurant not found'));
             }
 

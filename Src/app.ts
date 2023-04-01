@@ -9,6 +9,9 @@ import mongoose from 'mongoose';
 import SeedData from './config/SeedData';
 import fileUpload from './config/UploadConfig';
 import path from 'path';
+import * as http from 'http';
+
+
 
 
 class app {
@@ -58,8 +61,15 @@ class app {
   
 
     public listen(): void {
-        this.express.listen(this.port, () => {
+     const server=   this.express.listen(this.port, () => {
             console.log(`App listening on the port ${this.port}`);
+        });
+
+        const io = require('./utils/socket').init(server);
+        io.on('connect', (socket:any) => {
+          console.log('Client connected',socket.handshake.auth);
+          console.log(io.engine.clientsCount);
+
         });
     }
 }

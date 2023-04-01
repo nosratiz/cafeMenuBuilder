@@ -53,7 +53,7 @@ class UserController implements Controller {
 
             console.log(result);
 
-            if (result.message !== '') {
+            if (!result.data) {
                return next(new HttpException(result.status, result.message));
             }
 
