@@ -1,5 +1,4 @@
 import { ObjectId } from 'mongoose';
-import { IRole } from './../interfaces/role.interface';
 import { IUser } from './../interfaces/user.interface';
 class UserDto {
    

@@ -14,7 +14,6 @@ export default async function menuCache(
     const data = await redis.get(restaurantId);
     
     if (data) {
-        console.log('cache');
         return res.status(200).json(JSON.parse(data));
     }
     return next();

@@ -24,7 +24,7 @@ class MenuService {
         ]);
 
         let menusDto = menus.map((menu) =>
-            new MenuDto().mapToMenuListDto(menu)
+            MenuDto.mapToMenuListDto(menu)
         );
 
         const menuPaginationDto: IPagination = {
@@ -52,7 +52,7 @@ class MenuService {
             return null;
         }
 
-        return new MenuDto().mapToMenuDto(menu);
+        return MenuDto.mapToMenuDto(menu);
     }
 
     public async create(
@@ -72,7 +72,7 @@ class MenuService {
 
         this.redis.del(`${menu.restaurantId}`);
 
-        return new MenuDto().mapToMenuDto(menu);
+        return  MenuDto.mapToMenuDto(menu);
     }
 
     public async update(
@@ -95,7 +95,7 @@ class MenuService {
 
         this.redis.del(`${menu.restaurantId}`);
 
-        return new MenuDto().mapToMenuDto(menu);
+        return  MenuDto.mapToMenuDto(menu);
     }
 
     public async delete(id: string): Promise<boolean> {
@@ -123,7 +123,7 @@ class MenuService {
             .select('-isDeleted');
 
         let menusListDto = menus.map((menu) =>
-            new MenuDto().mapToMenuListDto(menu)
+             MenuDto.mapToMenuListDto(menu)
         );
 
         await this.redis.set(restaurantId, JSON.stringify(menusListDto), 60 * 60 * 24);

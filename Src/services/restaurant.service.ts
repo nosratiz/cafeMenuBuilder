@@ -20,7 +20,7 @@ class RestaurantService {
         ]);
 
         let restaurantsDto = restaurants.map((restaurant) =>
-            new RestaurantDto().mapToRestaurantListDto(restaurant)
+             RestaurantDto.mapToRestaurantListDto(restaurant)
         );
 
         const restaurantPaginationDto: IPagination = {
@@ -47,7 +47,7 @@ class RestaurantService {
                 return null;
             }
 
-            return new RestaurantDto().mapToRestaurantDto(restaurant);
+            return RestaurantDto.mapToRestaurantDto(restaurant);
         } catch (error) {
             console.log(error);
             throw new HttpException(404, 'Restaurant not found');
@@ -71,7 +71,7 @@ class RestaurantService {
             userId,
         });
 
-        return new RestaurantDto().mapToRestaurantDto(restaurant);
+        return  RestaurantDto.mapToRestaurantDto(restaurant);
     }
 
     public async update(
@@ -98,7 +98,7 @@ class RestaurantService {
 
         restaurant = await restaurant.save();
 
-        return new RestaurantDto().mapToRestaurantDto(restaurant);
+        return  RestaurantDto.mapToRestaurantDto(restaurant);
     }
 
     public async delete(id: string): Promise<void> {

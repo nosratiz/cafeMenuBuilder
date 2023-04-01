@@ -62,4 +62,4 @@ class fileUpload {
     }
 }
 
-export default fileUpload;
+export default new fileUpload();

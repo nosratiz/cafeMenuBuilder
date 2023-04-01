@@ -9,14 +9,11 @@ import mongoose from 'mongoose';
 import SeedData from './config/SeedData';
 import fileUpload from './config/UploadConfig';
 import path from 'path';
-import * as redis from 'redis';
-import { str } from 'envalid';
+
 
 class app {
     public express: Application;
     public port: number;
-    public seedData = new SeedData();
-    public fileUpload = new fileUpload();
 
     constructor(controllers: Controller[], port: number) {
         this.express = express();
@@ -35,7 +32,7 @@ class app {
         this.express.use(morgan('dev'));
         this.express.use(express.json());
         this.express.use(express.urlencoded({ extended: false }));
-        this.express.use(this.fileUpload.multerConfig().single('file'));
+        this.express.use(fileUpload.multerConfig().single('file'));
         this.express.use(compression());
         this.express.use('/uploads',express.static(path.join(__dirname, '../uploads')));
     }
@@ -55,7 +52,7 @@ class app {
 
         mongoose.connect(`mongodb://${MONGO_PATH}`);
 
-        this.seedData.seed();
+        SeedData.seed();
     }
 
   

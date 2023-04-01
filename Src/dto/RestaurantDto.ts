@@ -35,7 +35,7 @@ class RestaurantDto {
     }
 }
 
-export default RestaurantDto;
+export default new RestaurantDto();
 
 export interface IRestaurantDto {
     id: string;

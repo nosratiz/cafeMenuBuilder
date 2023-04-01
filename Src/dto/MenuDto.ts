@@ -29,7 +29,7 @@ class MenuDto {
     }
 }
 
-export default MenuDto;
+export default new MenuDto();
 
 export interface IMenuDto {
     id: string;

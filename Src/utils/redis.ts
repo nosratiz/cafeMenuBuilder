@@ -5,6 +5,7 @@ class RedisExtensions {
 
     constructor() {
         const { REDIS_HOST, REDIS_PORT } = process.env;
+        
         this.redis = new Redis({
             host: REDIS_HOST,
             port: Number(REDIS_PORT),

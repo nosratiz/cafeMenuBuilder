@@ -77,4 +77,4 @@ class SeedData {
     
 }
 
-export default SeedData;
+export default new SeedData();
