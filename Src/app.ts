@@ -9,10 +9,8 @@ import mongoose from 'mongoose';
 import SeedData from './config/SeedData';
 import fileUpload from './config/UploadConfig';
 import path from 'path';
-import * as http from 'http';
-
-
-
+import BackgroundJob from './Jobs/BackgroundJob';
+import schedule from 'node-schedule';
 
 class app {
     public express: Application;
@@ -25,8 +23,9 @@ class app {
         this.initializeDatabaseConnection();
         this.initializeMiddleware();
         this.initializeControllers(controllers);
+        this.InitializeBackgroundJobs();
         this.initializeErrorHandling();
-    
+     
     }
 
     private initializeMiddleware(): void {
@@ -37,7 +36,10 @@ class app {
         this.express.use(express.urlencoded({ extended: false }));
         this.express.use(fileUpload.multerConfig().single('file'));
         this.express.use(compression());
-        this.express.use('/uploads',express.static(path.join(__dirname, '../uploads')));
+        this.express.use(
+            '/uploads',
+            express.static(path.join(__dirname, '../uploads'))
+        );
     }
 
     private initializeControllers(controllers: Controller[]): void {
@@ -58,18 +60,19 @@ class app {
         SeedData.seed();
     }
 
-  
+    private InitializeBackgroundJobs(): void {
+        schedule.scheduleJob("*/2 * * * * *", BackgroundJob.SendEmail);
+    }
 
     public listen(): void {
-     const server=   this.express.listen(this.port, () => {
+        const server = this.express.listen(this.port, () => {
             console.log(`App listening on the port ${this.port}`);
         });
 
         const io = require('./utils/socket').init(server);
-        io.on('connect', (socket:any) => {
-          console.log('Client connected',socket.handshake.auth);
-          console.log(io.engine.clientsCount);
-
+        io.on('connect', (socket: any) => {
+            console.log('Client connected', socket.handshake.auth);
+            console.log(io.engine.clientsCount);
         });
     }
 }
