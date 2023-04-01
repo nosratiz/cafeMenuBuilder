@@ -2,6 +2,8 @@ import IPagination from '../utils/interfaces/pagination.interface';
 import RestaurantModel from '../models/restaurant.model';
 import HttpException from '../utils/exception/http.exceptions';
 import RestaurantDto, { IRestaurantDto } from '../dto/RestaurantDto';
+import Result from '../dto/ResultDto';
+import IResult from '../utils/interfaces/result.interface';
 
 class RestaurantService {
     private restaurant = RestaurantModel;
@@ -20,7 +22,7 @@ class RestaurantService {
         ]);
 
         let restaurantsDto = restaurants.map((restaurant) =>
-             RestaurantDto.mapToRestaurantListDto(restaurant)
+            RestaurantDto.mapToRestaurantListDto(restaurant)
         );
 
         const restaurantPaginationDto: IPagination = {
@@ -34,20 +36,23 @@ class RestaurantService {
         return restaurantPaginationDto;
     }
 
-    public async findOne(
-        id: string
-    ): Promise<IRestaurantDto | null | HttpException> {
+    public async findOne(id: string): Promise<IResult> {
         try {
+            const result = new Result();
             const restaurant = await this.restaurant
                 .findById(id)
                 .populate('userId', 'name family')
                 .select('-isDeleted');
 
             if (!restaurant) {
-                return null;
+                result.status = 404;
+                result.message = 'Restaurant not found';
+                return result;
             }
 
-            return RestaurantDto.mapToRestaurantDto(restaurant);
+            result.data = RestaurantDto.mapToRestaurantDto(restaurant);
+
+            return result;
         } catch (error) {
             console.log(error);
             throw new HttpException(404, 'Restaurant not found');
@@ -71,7 +76,7 @@ class RestaurantService {
             userId,
         });
 
-        return  RestaurantDto.mapToRestaurantDto(restaurant);
+        return RestaurantDto.mapToRestaurantDto(restaurant);
     }
 
     public async update(
@@ -81,13 +86,18 @@ class RestaurantService {
         description: string,
         address: any,
         location: any
-    ): Promise<IRestaurantDto | null> {
-        
-        var restaurant = await this.restaurant.findById(id)
-        .populate('userId', 'name family');
+    ): Promise<IResult> {
+       
+        const result = new Result();
+
+        var restaurant = await this.restaurant
+            .findById(id)
+            .populate('userId', 'name family');
 
         if (!restaurant) {
-            return null;
+            result.status = 404;
+            result.message = 'Restaurant not found';
+            return result;
         }
 
         restaurant.name = name;
@@ -98,19 +108,27 @@ class RestaurantService {
 
         restaurant = await restaurant.save();
 
-        return  RestaurantDto.mapToRestaurantDto(restaurant);
+        result.data = RestaurantDto.mapToRestaurantDto(restaurant);
+
+        return result;
     }
 
-    public async delete(id: string): Promise<void> {
+    public async delete(id: string): Promise<IResult> {
+        const result = new Result();
+
         var restaurant = await this.restaurant.findById(id);
 
         if (!restaurant) {
-            throw new HttpException(404, 'Restaurant not found');
+            result.status = 404;
+            result.message = 'Restaurant not found';
+            return result;
         }
 
         restaurant.isDeleted = true;
 
         await restaurant.save();
+
+        return result;
     }
 }
 

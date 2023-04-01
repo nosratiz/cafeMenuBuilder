@@ -37,7 +37,7 @@ class UserDto {
     }
 }
 
-export default UserDto;
+export default new UserDto();
 
 export interface IUserDto {
     id: string;

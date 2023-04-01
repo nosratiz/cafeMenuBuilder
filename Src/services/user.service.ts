@@ -2,34 +2,40 @@ import HttpException from '../utils/exception/http.exceptions';
 import IPagination from '../utils/interfaces/pagination.interface';
 import UserModel from '../models/user.model';
 import token from '../utils/token';
-import UserDto, { IUserDto } from '../dto/UserDto';
+import UserDto from '../dto/UserDto';
+import Localizer from '../utils/localizer';
+import Result from '../dto/ResultDto';
+import IResult from '../utils/interfaces/result.interface';
 
 class UserService {
     private user = UserModel;
 
-    public async adminLogin(
-        email: string,
-        password: string
-    ): Promise<string | HttpException> {
+    public async adminLogin(email: string, password: string): Promise<IResult> {
         try {
+            const result = new Result();
             const user = await this.user
-            .findOne({ email: email })
-            .populate('roles')
-            .select('email password id status roles');
+                .findOne({ email: email })
+                .populate('roles')
+                .select('email password id status roles');
 
             if (!user) {
-                throw new HttpException(400,'invalid credentials');
+                result.status = 400;
+                result.message = Localizer.get('InvalidUserOrPassword');
+                return result;
             }
 
             if ((await user.isValidPassword(password)) === false) {
-                throw new HttpException(400,'invalid credentials');
+                result.status = 400;
+                result.message = Localizer.get('InvalidUserOrPassword');
+                return result;
             }
 
-            return token.createToken(user);
+            result.data = token.createToken(user);
+
+            return result;
         } catch (error) {
             console.log(error);
-
-            throw new Error('something went wrong');
+            throw new HttpException(500, 'Internal Server Error');
         }
     }
 
@@ -46,9 +52,7 @@ class UserService {
                 this.user.countDocuments({ isDeleted: false }),
             ]);
 
-            const userDto = users.map((user) =>
-                new UserDto().userListDto(user)
-            );
+            const userDto = users.map((user) => UserDto.userListDto(user));
 
             console.log(userDto);
 
@@ -68,21 +72,22 @@ class UserService {
         }
     }
 
-    public async findOne(id: string): Promise<IUserDto  | HttpException> {
-        console.log(id);
+    public async findOne(id: string): Promise<IResult> {
         try {
+            const result = new Result();
             const user = await this.user
                 .findOne({ _id: id, isDeleted: false })
                 .populate({ path: 'roles', model: 'Role' })
                 .select('-password');
 
-            
-
             if (!user) {
-               return new HttpException(404, 'user not found');
+                result.status = 404;
+                result.message = Localizer.get('UserNotFound');
+                return result;
             }
 
-            return new UserDto().mapToUserDto(user);
+            result.data = UserDto.mapToUserDto(user);
+            return result;
         } catch (error) {
             console.log(error);
             throw new HttpException(404, 'user not found');

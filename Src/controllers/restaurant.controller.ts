@@ -75,15 +75,13 @@ class RestaurantController implements Controller {
         try {
             const { id } = request.params;
 
-            const restaurant = await this.restaurantService.findOne(id);
+            const result = await this.restaurantService.findOne(id);
 
-            console.log(restaurant);
-
-            if (!restaurant) {
+            if (result.message !== '') {
                 return next(new HttpException(404, 'Restaurant not found'));
             }
 
-            response.status(200).json(restaurant);
+            response.status(200).json(result.data);
         } catch (error) {
             console.log(error);
         }
@@ -118,12 +116,11 @@ class RestaurantController implements Controller {
         next: NextFunction
     ) => {
         const { id } = request.params;
-        const {  name, logo, description, address, location } = request.body;
+        const { name, logo, description, address, location } = request.body;
 
-
-        console.log(id,name);
+        console.log(id, name);
         try {
-            const restaurant = await this.restaurantService.update(
+            const result = await this.restaurantService.update(
                 id,
                 name,
                 logo,
@@ -132,13 +129,11 @@ class RestaurantController implements Controller {
                 location
             );
 
-           
-
-            if (!restaurant) {
+            if (result.message !== '') {
                 return next(new HttpException(404, 'Restaurant not found'));
             }
 
-            response.status(200).json(restaurant);
+            response.status(200).json(result.data);
         } catch (error) {
             console.log(error);
         }
@@ -152,7 +147,11 @@ class RestaurantController implements Controller {
         const { id } = request.params;
 
         try {
-            await this.restaurantService.delete(id);
+            var result = await this.restaurantService.delete(id);
+
+            if (result.message !== '') {
+                return next(new HttpException(404, 'Restaurant not found'));
+            }
 
             response.status(204).json();
         } catch (error) {

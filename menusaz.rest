@@ -1,5 +1,5 @@
 @baseUrl=http://localhost:3000
-@accessToken=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjRhNTRiODlhMjJhOGI0OWM5ODdlYSIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTY4MDIxMDI0MCwiZXhwIjoxNjgwMjk2NjQwfQ.eVXyQEkIxQV1TrOFMgK5D8qMtRDYNdaPdlsrop5qQvU
+@accessToken=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjRhNTRiODlhMjJhOGI0OWM5ODdlYSIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTY4MDMyOTQ0NSwiZXhwIjoxNjgwNDE1ODQ1fQ.bFQQJZ1DkVUE3jUnu2A5RIAeKrMDJzOqujCmgKd8ISo
 
 POST {{baseUrl}}/account/login
 Content-Type: application/json
@@ -30,7 +30,7 @@ Content-Type: application/json
 Authorization: {{accessToken}}
 
 ###
-GET {{baseUrl}}/restaurant/64267261faccf790280fb292
+GET {{baseUrl}}/restaurant/64267261faccf790280fb29b
 Content-Type: application/json
 Authorization: {{accessToken}}
 

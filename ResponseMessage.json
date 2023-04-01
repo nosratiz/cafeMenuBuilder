@@ -1,0 +1,738 @@
+﻿{
+  "Data": [
+    {
+      "Key": "ConfirmEmailSuccessfully",
+      "Template": "حساب کاربری شما با موفقیت فعال گردید"
+    },
+    {
+      "Key": "PasswordResetSuccessfully",
+      "Template": "پسورد شما با موفقیت تغییر یافت"
+    },
+    {
+      "Key": "EmailSuccessfullySent",
+      "Template": "فراموشی رمز عبور با موفقیت برای شما ارسال گردید"
+    },
+    {
+      "Key": "EmailIsAlreadyConfirmed",
+      "Template": "حساب کاربری شما قبلا مورد تایید قرار گرفته است"
+    },
+    {
+      "Key": "ResendSuccessfully",
+      "Template": "ایمیل تایید حساب کاربری شما با موفقیت ارسال شد"
+    },
+    {
+      "Key": "InvalidUserOrPassword",
+      "Template": "نام کاربری یا رمز عبور اشتباه است"
+    },
+    {
+      "Key": "ContentNotFound",
+      "Template": "محتوا مورد نظر شما پیدا نشد"
+    },
+    {
+      "Key": "UserNotFound",
+      "Template": "کاربرمورد نظر شما یافت نشد"
+    },
+    {
+      "Key": "CanNotDeleteAdmin",
+      "Template": "اجازه حذف کاربر ادمین وجود ندارد"
+    },
+    {
+      "Key": "ForgotPassword",
+      "Template": "فراموشی رمز عبور"
+    },
+    {
+      "Key": "WrongPassword",
+      "Template": "پسورد اشتباه است"
+    },
+    {
+      "Key": "ActiveCodeExpired",
+      "Template": "کد تایید منقضی شده است"
+    },
+    {
+      "Key": "UnAuthorized",
+      "Template": "اجازه دسترسی به این قسمت را ندارید"
+    },
+
+    {
+      "Key": "EmailIsRequired",
+      "Template": " ایمیل الزامی می باشد "
+    },
+    {
+      "Key": "invalid_email",
+      "Template": "فرمت ایمیل صحیح نمی باشد"
+    },
+    {
+      "Key": "FamilyIsRequired",
+      "Template": "نام خانوادگی الزامی می باشد"
+    },
+    {
+      "Key": "NameIsRequired",
+      "Template": "نام الزامی می باشد"
+    },
+    {
+      "Key": "MobileIsRequired",
+      "Template": "موبایل الزامی می باشد"
+    },
+    {
+      "Key": "PasswordIsRequired",
+      "Template": "پسورد الزامی می باشد"
+    },
+    {
+      "Key": "InvalidMobileFormat",
+      "Template": "فرمت موبایل صحیح نمی باشد"
+    },
+    {
+      "Key": "MobileAlreadyExist",
+      "Template": "شماره در سیستم موجود می باشد"
+    },
+    {
+      "Key": "RoleNotFound",
+      "Template": "نقش پیدا نشد"
+    },
+    {
+      "Key": "EmailIsAlreadyExist",
+      "Template": "ایمیل در سامانه موجود می باشد"
+    },
+    {
+      "Key": "ImageIsRequired",
+      "Template": "ارسال عکس اجباری می باشد"
+    },
+    {
+      "Key": "FileExtensionNotSupported",
+      "Template": "فرمت فایل ارسالی پشتیبانی نمی شود"
+    },
+
+    {
+      "Key": "CodeIsRequired",
+      "Template": "وارد کردن کد الزامی است"
+    },
+    {
+      "Key": "CodeAlreadyExist",
+      "Template": "این کد در سیستم موجود می باشد"
+    },
+
+    {
+      "Key": "DuplicateName",
+      "Template": "نام تکراری می باشد"
+    },
+
+    {
+      "Key": "NationalCodeIsRequired",
+      "Template": "کد ملی الزامی است"
+    },
+    {
+      "Key": "NationalCodeMust10Digits",
+      "Template": "کد ملی 10 رقمی می باشد"
+    },
+    {
+      "Key": "BirthDateIsRequired",
+      "Template": "وارد کردن تاریخ تولد الزامی است"
+    },
+    {
+      "Key": "PostalCodeIsRequired",
+      "Template": "وارد کردن کد پستی الزامی است"
+    },
+    {
+      "Key": "NationalCodeAlreadyExist",
+      "Template": "کد ملی در سیستم موجود می باشد"
+    },
+
+    {
+      "Key": "WrongCode",
+      "Template": "کد تایید اشتباه می باشد"
+    },
+    {
+      "Key": "ConfirmAlreadySent",
+      "Template": "کد تایید ارسال شده است و تا 2 دقیقه دیگر ارسال کد دیگر مقدور نمی باشد"
+    },
+    {
+      "Key": "PasswordCurrentlyUsed",
+      "Template": "پسورد در گذشته استفاده شده است"
+    },
+    {
+      "Key": "RecentlySendRequest",
+      "Template": "اخیرا درخواست مشاوره شما ثبت شده است بین هر درخواست حداقل 2 دقیقه زمان لازم می باشد"
+    },
+    {
+      "Key": "PasswordNotSet",
+      "Template": "پسورد برای شما از طرف ادمین تنظیم نشده است"
+    },
+    {
+      "Key": "SmsNotSend",
+      "Template": "سرویس پیامک دچار مشکل شده است لطفا بعدا مراجعه فرمایید"
+    },
+    {
+      "Key": "FullNameIsRequired",
+      "Template": "وارد کردن نام الزامی می باشد"
+    },
+    {
+      "Key": "PasswordRecentlyUsed",
+      "Template": "این پسورد به تازگی استفاده شده است"
+    },
+    {
+      "Key": "ContentIsRequired",
+      "Template": "وارد کردن مجتوای پیام الزامی می باشد"
+    },
+    {
+      "Key": "UserIsSuspended",
+      "Template": "حساب کاربری شما مسدود شده است با ادمین تماس حاصل فرمایید"
+    },
+    {
+      "Key": "UserIsNotActive",
+      "Template": "حساب کاربری شما در سامانه فعال نشده است"
+    },
+    {
+      "Key": "ActiveCodeRecentlySent",
+      "Template": "کد فعال سازی برای شما ارسال شده است برای دریافت کد بعدی ۲ دقیقه زمان لازم است"
+    },
+    {
+      "Key": "VitalRole",
+      "Template": "اجازه حذف و ویرایش نقش سیستمی وجود ندارد"
+    },
+    {
+      "Key": "RoleInUse",
+      "Template": "نقش در حال استفاده کاربر می باشد"
+    },
+    {
+      "Key": "PasswordWrong",
+      "Template": "پسورد وارد شده اشتباه می باشد"
+    },
+    {
+      "Key": "UsernameIsRequired",
+      "Template": "وارد کردن نام کاربری الزامی می باشد"
+    },
+    {
+      "Key": "UserNameIsExist",
+      "Template": "این نام کاربری در سامانه موجود می باشد"
+    },
+    {
+      "Key": "MinimumPasswordLength",
+      "Template": "حداقل تعداد کارکتر لازم برای پسورد ۸ می باشد"
+    },
+    {
+      "Key": "PasswordPolicyViolation",
+      "Template": "پسورد باید شامل حروف بزرگ و کوچک و عدد و یک کارکتر خاص باشد"
+    },
+    {
+      "Key": "PostalCodeIsRequired",
+      "Template": "کد پستی الزامی می باشد"
+    },
+    {
+      "Key": "PhoneNumberIsRequired",
+      "Template": "شماره تلفن الزامی می باشد"
+    },
+    {
+      "Key": "HomeAddressIsRequired",
+      "Template": "ادرس خونه الزامی می باشد"
+    },
+    {
+      "Key": "CityNotFound",
+      "Template": "شهر مورد نظر پیدا نشد"
+    },
+    {
+      "Key": "ActionNotAllowed",
+      "Template": "اجازه مسدود سازی برای خود وجود ندارد"
+    },
+    {
+      "Key": "CanNotDeleteYourSelf",
+      "Template": "اجازه حذف کردن خود را ندارید"
+    },
+    {
+      "Key": "MaxNameLength",
+      "Template": "حداکثر تعداد کارکتر ۲۵ می باشد"
+    },
+    {
+      "Key": "MaxFamilyLength",
+      "Template": "حداکثر تعداد کارکتر ۷۵ می باشد"
+    },
+    {
+      "Key": "MaxPasswordLength",
+      "Template": "حداکثر تعداد کارکتر ۳۰ می باشد"
+    },
+    {
+      "Key": "MaxUserNameLength",
+      "Template": "حداکثر تعداد کارکتر ۲۰ می باشد"
+    },
+    {
+      "Key": "MaxMobileLength",
+      "Template": "موبایل  ۱۱ کارکتر دارد"
+    },
+    {
+      "Key": "MaxFatherLength",
+      "Template": "حداکثر تعداد کارکتر نام پدر ۲۵ می باشد"
+    },
+    {
+      "Key": "PostalCodeShouldBe10digit",
+      "Template": " تعداد کارکتر کد پستی ۱۰ می باشد"
+    },
+    {
+      "Key": "MobileMustBe11Digit",
+      "Template": "موبایل  ۱۱ کارکتر دارد"
+    },
+    {
+      "Key": "PurchaseRequest",
+      "Template": "فرم درخواست خرید"
+    },
+    {
+      "Key": "MobileNumberIsWrong",
+      "Template": "شماره موبایل اشتباه است"
+    },
+    {
+      "Key": "NameAlreadyExist",
+      "Template": "نام تکراری می باشد"
+    },
+    {
+      "Key": "CategoryNotFound",
+      "Template": "دسته بندی مورد نظر یافت نشد"
+    },
+    {
+      "Key": "BlogNotFound",
+      "Template": "بلاگ  مورد نظر یافت نشد"
+    },
+    {
+      "Key": "SlugIsExist",
+      "Template": "اسلاگ مورد نظر در سیستم موجود می باشد"
+    },
+    {
+      "Key": "SlugIsRequired",
+      "Template": "وارد کردن اسلاگ الزامی می باشد"
+    },
+    {
+      "Key": "CategoryInUse",
+      "Template": "دسته بندی در سیستم در حال استفاده می باشد"
+    },
+    {
+      "Key": "SizeTooLarge",
+      "Template": "حجم فایل مورد نظر باید کمتر از ۲ مگ باشد"
+    },
+    {
+      "Key": "MaxLengthNameShouldBeHundredCharacter",
+      "Template": "حداکثر تعداد کارکتر برای نام ۱۰۰ می باشد"
+    },
+    {
+      "Key": "VideoLinkNotSet",
+      "Template": "لینک ویدیو تنظیم نشده است"
+    },
+    {
+      "Key": "InvalidDiscountTypeMatchForGroup",
+      "Template": "در حالت گروهی باید تعداد مشخص شود"
+    },
+    {
+      "Key": "InvalidDiscountTypeMatchForIndividual",
+      "Template": "در حالت فردی باید یک کاربر انتخاب شود"
+    },
+    {
+      "Key": "MaxLengthCode",
+      "Template": "حداکثر تعداد کارکتر کد ۱۲ می باشد"
+    },
+    {
+      "Key": "DiscountNotFound",
+      "Template": "کد تخفیف پیدا نشد"
+    },
+    {
+      "Key": "InvalidDateTimePeriod",
+      "Template": "تاریخ پایان نمی تواند از تاریخ شروع کوچک تر باشد"
+    },
+    {
+      "Key": "DuplicateCode",
+      "Template": "کد از قبل در سیستم موجود می باشد"
+    },
+    {
+      "Key": "DesignerNameIsRequired",
+      "Template": "نام طراح الزامی می باشد"
+    },
+    {
+      "Key": "AddressIsRequired",
+      "Template": "آدرس الزامی می باشد"
+    },
+    {
+      "Key": "ProjectNotFound",
+      "Template": "پروژه مورد نظر یافت نشد"
+    },
+    {
+      "Key": "AgencyNotFound",
+      "Template": "آژانس مورد نظر یافت نشد"
+    },
+    {
+      "Key": "CityNotFound",
+      "Template": "شهر مورد نظر یافت نشد"
+    },
+    {
+      "Key": "MaximumLengthName",
+      "Template": "حداکثر تعداد کارکتر برای نام ۱۰۰ می باشد"
+    },
+    {
+      "Key": "MaximumLengthDisplayName",
+      "Template": "حداکثر تعداد کارکتر برای نام نمایشی ۱۰۰ می باشد"
+    },
+    {
+      "Key": "MaximumLengthUnitName",
+      "Template": "حداکثر تعداد کارکتر برای نام واحد ۱۰۰ می باشد"
+    },
+    {
+      "Key": "AttributeNotFound",
+      "Template": "خصوصیت مورد نظر یافت نشد"
+    },
+    {
+      "Key": "AttributeValueNotFound",
+      "Template": "مقدار خصوصیت مورد نظر یافت نشد"
+    },
+    {
+      "Key": "AttributeUseInProduct",
+      "Template": "خصوصیت مورد نظر در کالا هایی که در حال استفاده است موجود است"
+    },
+    {
+      "Key": "TemplateNotFound",
+      "Template": "قالب مورد نظر یافت نشد"
+    },
+    {
+      "Key": "TemplateInUse",
+      "Template": "قالب مورد نظر در حال استفاده می باشد"
+    },
+    {
+      "Key": "VariantUseInProduct",
+      "Template": "ویرایش مورد نظر در کالا هایی که در حال استفاده است موجود است"
+    },
+    {
+      "Key": "CountMustBeGreaterThanOrEqualToZero",
+      "Template": "تعداد باید بزرگتر یا مساوی صفر باشد"
+    },
+    {
+      "Key": "PriceMustBeGreaterThanOrEqualToZero",
+      "Template": " قیمت باید بزرگتر یا مساوی صفر باشد"
+    },
+    {
+      "Key": "ProductUseInOrder",
+      "Template": " کالا مورد نظر در سفارشاتی که در حال استفاده است موجود است"
+    },
+    {
+      "Key": "CodeExists",
+      "Template": "کد از قبل در سیستم موجود می باشد"
+    },
+    {
+      "Key": "DiscountPriceMustBeLessThanPrice",
+      "Template": "قیمت تخفیف باید کمتر از قیمت باشد"
+    },
+    {
+      "Key": "Unauthorized",
+      "Template": "شما اجازه دسترسی به این بخش را ندارید"
+    },
+    {
+      "Key": "ItemAlreadyInOrder",
+      "Template": "مورد مورد نظر در سبد خرید شما موجود می باشد"
+    },
+    {
+      "Key": "AddressIsTooLong",
+      "Template": "آدرس بیش از حد طولانی می باشد"
+    },
+    {
+      "Key": "MaxMobileLength",
+      "Template": "شماره موبایل ۱۱ کارکتر می باشد"
+    },
+    {
+      "Key": "PostalCodeIsTooLong",
+      "Template": "کد پستی بیش از حد طولانی می باشد"
+    },
+    {
+      "Key": "MaxLengthDescription",
+      "Template": "توضیحات بیش از حد طولانی می باشد"
+    },
+    {
+      "Key": "PostalCodeIsNotValid",
+      "Template": "کد پستی معتبر نمی باشد"
+    },
+    {
+      "Key": "DiscountNotStarted",
+      "Template": "تخفیف هنوز شروع نشده است"
+    },
+    {
+      "Key": "DiscountExpired",
+      "Template": "تخفیف منقضی شده است"
+    },
+    {
+      "Key": "DiscountAlreadyUsed",
+      "Template": "تخفیف قبلا استفاده شده است"
+    },
+    {
+      "Key": "DisCountNotYours",
+      "Template": "تخفیف مورد نظر برای شما نیست"
+    },
+    {
+      "Key": "NotEnoughProduct",
+      "Template": "موجودی کالا کافی نمی باشد"
+    },
+    {
+      "Key": "BasketIsEmpty",
+      "Template": "سبد خرید شما خالی می باشد"
+    },
+    {
+      "Key": "SomeProductNotEnough",
+      "Template": "بعضی از کالاها موجودی کافی ندارند"
+    },
+    {
+      "Key": "ProductNotFound",
+      "Template": "کالای مورد نظر یافت نشد"
+    },
+    {
+      "Key": "OrderNotFound",
+      "Template": "سفارش مورد نظر یافت نشد"
+    },
+    {
+      "Key": "ItemNotFound",
+      "Template": "ایتم مورد مورد نظر یافت نشد"
+    },
+    {
+      "Key": "PercentageMustBeBetweenZeroAndOneHundred",
+      "Template": "درصد باید بین صفر تا صد باشد"
+    },
+    {
+      "Key": "CityHasNoService",
+      "Template": "شهر مورد نظر خدمت رسانی ندارد"
+    },
+    {
+      "Key": "CategoryHasProduct",
+      "Template": "دسته بندی مورد نظر دارای کالا می باشد"
+    },
+    {
+      "Key": "CheckYourMobileNumber",
+      "Template": "شماره موبایل را بررسی کنید با این شماره حسابی یافت نشد"
+    },
+    {
+      "Key": "CommentNotFound",
+      "Template": "نظر مورد نظر یافت نشد"
+    },
+    {
+      "Key": "OrderAlreadyPay",
+      "Template": "سفارش قبلا پرداخت شده است"
+    },
+    {
+      "Key": "OrderNotReady",
+      "Template": "سفارش یا کنسل شده یا پرداخت شده است"
+    },
+    {
+      "Key": "BranchNotFound",
+      "Template": "شعبه مورد نظر یافت نشد"
+    },
+    {
+      "Key": "FinishProjectCanNotBeDeleted",
+      "Template": "پروژه تکمیل شده نمی تواند حذف شود"
+    },
+    {
+      "Key": "DefinitionIsRequired",
+      "Template": "تعریف مورد نظر اجباری است"
+    },
+    {
+      "Key": "MeterIsRequired",
+      "Template": "متراژ مورد نظر اجباری است"
+    },
+    {
+      "Key": "MeterMustBeGreaterThanZero",
+      "Template": "متراژ مورد نظر باید بزرگتر از صفر باشد"
+    },
+    {
+      "Key": "PriceIsRequired",
+      "Template": "قیمت مورد نظر اجباری است"
+    },
+    {
+      "Key": "PeriodDaysIsRequired",
+      "Template": "مدت زمان مورد نظر اجباری است"
+    },
+    {
+      "Key": "PeriodDaysMustBeGreaterThanZero",
+      "Template": "مدت زمان مورد نظر باید بزرگتر از صفر باشد"
+    },
+    {
+      "Key": "UserResumeNotFound",
+      "Template": "رزومه کاربر مورد نظر یافت نشد"
+    },
+    {
+      "Key": "FreeLanceWorkNotFound",
+      "Template": "کار آزاد مورد نظر یافت نشد"
+    },
+    {
+      "Key": "EndDateMustNotNull",
+      "Template": "تاریخ پایان نمی تواند خالی باشد"
+    },
+    {
+      "Key": "ExperienceNotFound",
+      "Template": "تجربه کاری مورد نظر یافت نشد"
+    },
+    {
+      "Key": "SkillNotFound",
+      "Template": "مهارت مورد نظر یافت نشد"
+    },
+    {
+      "Key": "AchievementNotFound",
+      "Template": "دستاورد مورد نظر یافت نشد"
+    },
+    {
+      "Key": "ConflictPeriodTime",
+      "Template": "دوره زمانی مورد نظر با دوره زمانی دیگر تداخل دارد"
+    },
+    {
+      "Key": "EndDateMustBeNull",
+      "Template": "تاریخ پایان باید خالی باشد"
+    },
+    {
+      "Key": "ProvinceNotFound",
+      "Template": "استان مورد نظر یافت نشد"
+    },
+    {
+      "Key": "UserNameAlreadyExist",
+      "Template": "نام کاربری مورد نظر قبلا ثبت شده است"
+    },
+    {
+      "Key": "InvalidLinkedInUrl",
+      "Template": "آدرس لینکدین مورد نظر معتبر نمی باشد"
+    },
+    {
+      "Key": "InvalidInstagramUrl",
+      "Template": "آدرس اینستاگرام مورد نظر معتبر نمی باشد"
+    },
+    {
+      "Key": "MinimumLengthISBN",
+      "Template": "طول کد شماره باید بیشتر از 16 کاراکتر باشد"
+    },
+    {
+      "Key": "AccessDeny",
+      "Template": "دسترسی مجاز نمی باشد"
+    },
+    {
+      "Key": "ProjectStatusIsNotOpen",
+      "Template": "وضعیت پروژه باز نمی باشد"
+    },
+    {
+      "Key": "RateIsNotValid",
+      "Template": "امتیاز مورد نظر معتبر نمی باشد"
+    },
+    {
+      "Key": "RateIsRequired",
+      "Template": "امتیاز مورد نظر اجباری است"
+    },
+    {
+      "Key": "UserIdIsRequired",
+      "Template": "کاربر مورد نظر اجباری است"
+    },
+    {
+      "Key": "OnlyUserCanRateThatHasProjectWithEachOther",
+      "Template": "فقط کاربرانی که با هم پروژه دارند می توانند امتیاز دهند"
+    },
+    {
+      "Key": "MessageLengthMustBeLessThan500",
+      "Template": "طول پیام باید کمتر از 500 کاراکتر باشد"
+    },
+    {
+      "Key": "UserAlreadyRated",
+      "Template": "کاربر قبلا امتیاز داده است"
+    },
+    {
+      "Key": "UserCanNotRateHimself",
+      "Template": "کاربر نمی تواند خودش را امتیاز دهد"
+    },
+    {
+      "Key": "OnlyCanSendMessageToUserOffers",
+      "Template": "فقط می توانید پیام برای کاربرانی که پیشنهاد داده اند ارسال کنید"
+    },
+    {
+      "Key": "DuplicateOffer",
+      "Template": "شما قبلا پیشنهاد داده اید"
+    },
+    {
+      "Key": "CommentAlreadyExist",
+      "Template": "نظر قبلا ثبت شده است"
+    },
+    {
+      "Key": "CommentTextIsRequired",
+      "Template": "متن نظر اجباری است"
+    },
+    {
+      "Key": "CommentTextLengthMustBeLessThan500",
+      "Template": "طول متن نظر باید کمتر از 500 کاراکتر باشد"
+    },
+    {
+      "Key": "ProjectStatusChooseDesigner",
+      "Template": "شما به عنوان طراح انتخاب شده اید"
+    },
+    {
+      "Key": "ProjectStatusIdea",
+      "Template": "ایده طرح اولیه شما مورد تایید قرار گرفت"
+    },
+    {
+      "Key": "ProjectStatusFirstExport",
+      "Template": "خروجی طرح اولیه شما مورد تایید قرار گرفت"
+    },
+    
+    {
+      "Key": "ProjectStatusFirstExport",
+      "Template": "خروجی طرح اولیه شما مورد تایید قرار گرفت"
+    },
+    
+    {
+      "Key": "ProjectStatusSecondExport",
+      "Template": "خروجی طرح دوم شما مورد تایید قرار گرفت"
+    },
+    {
+      "Key": "ProjectStatusDone",
+      "Template": "پروژه شما تکمیل شد"
+    },
+    {
+      "Key": "PriceMustBeLessThanOrEqualTo50000000",
+      "Template": "قیمت باید کمتر یا مساوی 50000000 باشد"
+    },
+    {
+      "Key": "TransactionAlreadyVerified",
+      "Template": "تراکنش قبلا تایید شده است"
+    },
+    {
+      "Key": "CanNotFindDesignerOffer",
+      "Template": "پیشنهاد طراح مورد نظر یافت نشد"
+    },
+    {
+      "Key": "NotEnoughMoney",
+      "Template": "پول کافی برای قبول پیشنهاد ندارید"
+    },
+    {
+      "Key": "NotEnoughMoneyForWithDraw",
+      "Template": "مبلغ مورد نظر برای برداشت کمتر از حداقل مبلغ برداشت می باشد"
+    },
+    {
+      "Key": "UserNotVerify",
+      "Template": "هویت مدارک کاربر مورد نظر هنوز تایید نشده است پس از احراز هویت کامل درخواست خود را دوباره ارسال کنید"
+    },
+    {
+      "Key": "CanNotJumpInStepOfProject",
+      "Template": "مراحل پروژه را به ترتیب پیش بروید"
+    },
+    {
+      "Key": "InvalidIbanFormat",
+      "Template": "فرمت شماره شبا اشتباه است"
+    },
+    {
+      "Key": "MoodBoardIsUsedInProject",
+      "Template": "مدبورد مورد نظر در پروژه استفاده شده است "
+    },
+    {
+      "Key": "CategoryIsUsedInProject",
+      "Template": " دسته بندی مورد نظر در پروژه استفاده شده است"
+    },
+    {
+      "Key": "UserIsUsedInProject",
+      "Template": "کاربر مورد نظر در پروژه استفاده شده است"
+    }
+  ,
+    {
+      "Key": "MessageNotFound",
+      "Template": "پیام مورد نظر یافت نشد"
+    }
+    ,
+    {
+      "Key": "MessageOrFileRequired",
+      "Template": "پیام یا فایل اجباری است"
+    }
+    ,
+    {
+      "Key": "MessageIsRequired",
+      "Template": " پیام اجباری است"
+    }
+  ]
+}

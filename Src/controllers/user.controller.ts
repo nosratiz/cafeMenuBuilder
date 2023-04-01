@@ -15,7 +15,11 @@ class UserController implements Controller {
 
     private initializeRoutes() {
         this.router.get(`${this.path}`, authenticatedMiddleware, this.UserList);
-        this.router.get(`${this.path}/:id`,authenticatedMiddleware,  this.UserDetail);
+        this.router.get(
+            `${this.path}/:id`,
+            authenticatedMiddleware,
+            this.UserDetail
+        );
     }
 
     private UserList = async (
@@ -37,25 +41,27 @@ class UserController implements Controller {
         }
     };
 
-    private UserDetail = async (  request: Request,
+    private UserDetail = async (
+        request: Request,
         response: Response,
-        next: NextFunction) => {
+        next: NextFunction
+    ) => {
         try {
             const { id } = request.params;
-           
-            const user = await this.userService.findOne(id);
 
-            console.log(user);
+            const result = await this.userService.findOne(id);
 
-            if(!user || user instanceof HttpException){
-              return next(new HttpException(404, 'User not found'));
+            console.log(result);
+
+            if (result.message !== '') {
+               return next(new HttpException(result.status, result.message));
             }
 
-            response.status(200).json(user);
+            response.status(200).json(result.data);
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 }
 
 export default UserController;

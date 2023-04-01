@@ -3,10 +3,12 @@ import HttpException from '../utils/exception/http.exceptions';
 import MenuDto, { IMenuDto, IMenuListDto } from '../dto/MenuDto';
 import MenuModel from '../models/menu.model';
 import RedisExtensions from '../utils/redis';
+import Result from '../dto/ResultDto';
+import IResult from '../utils/interfaces/result.interface';
 
 class MenuService {
     private menu = MenuModel;
-    private redis : RedisExtensions;
+    private redis: RedisExtensions;
 
     constructor() {
         this.redis = new RedisExtensions();
@@ -23,9 +25,7 @@ class MenuService {
             this.menu.countDocuments({ isDeleted: false }),
         ]);
 
-        let menusDto = menus.map((menu) =>
-            MenuDto.mapToMenuListDto(menu)
-        );
+        let menusDto = menus.map((menu) => MenuDto.mapToMenuListDto(menu));
 
         const menuPaginationDto: IPagination = {
             page: page,
@@ -38,10 +38,9 @@ class MenuService {
         return menuPaginationDto;
     }
 
-    public async findOne(id: string): Promise<IMenuDto | null | HttpException> {
-        
-        console.log(id);
-        
+    public async findOne(id: string): Promise<IResult> {
+        const result = new Result();
+
         const menu = await this.menu
             .findOne({ _id: id, isDeleted: false })
             .populate('restaurantId', 'name logo');
@@ -49,10 +48,14 @@ class MenuService {
         console.log(menu);
 
         if (!menu) {
-            return null;
+            result.status = 404;
+            result.message = 'Menu not found';
+            return result;
         }
 
-        return MenuDto.mapToMenuDto(menu);
+        result.data = MenuDto.mapToMenuDto(menu);
+
+        return result;
     }
 
     public async create(
@@ -72,7 +75,7 @@ class MenuService {
 
         this.redis.del(`${menu.restaurantId}`);
 
-        return  MenuDto.mapToMenuDto(menu);
+        return MenuDto.mapToMenuDto(menu);
     }
 
     public async update(
@@ -82,7 +85,9 @@ class MenuService {
         image: string,
         price: number,
         restaurantId: string
-    ): Promise<IMenuDto | null> {
+    ): Promise<IResult> {
+        const result = new Result();
+
         const menu = await this.menu.findOneAndUpdate(
             { id, isDeleted: false },
             { title, description, image, price, restaurantId },
@@ -90,12 +95,16 @@ class MenuService {
         );
 
         if (!menu) {
-            return null;
+            result.status = 404;
+            result.message = 'Menu not found';
+            return result;
         }
 
         this.redis.del(`${menu.restaurantId}`);
 
-        return  MenuDto.mapToMenuDto(menu);
+        result.data = MenuDto.mapToMenuDto(menu);
+
+        return result;
     }
 
     public async delete(id: string): Promise<boolean> {
@@ -117,16 +126,18 @@ class MenuService {
     public async findByRestaurantId(
         restaurantId: string
     ): Promise<IMenuListDto[]> {
-
-       const menus= await this.menu.find({ restaurantId, isDeleted: false })
+        const menus = await this.menu
+            .find({ restaurantId, isDeleted: false })
             .populate('restaurantId', 'name logo')
             .select('-isDeleted');
 
-        let menusListDto = menus.map((menu) =>
-             MenuDto.mapToMenuListDto(menu)
-        );
+        let menusListDto = menus.map((menu) => MenuDto.mapToMenuListDto(menu));
 
-        await this.redis.set(restaurantId, JSON.stringify(menusListDto), 60 * 60 * 24);
+        await this.redis.set(
+            restaurantId,
+            JSON.stringify(menusListDto),
+            60 * 60 * 24
+        );
 
         return menusListDto;
     }

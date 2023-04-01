@@ -29,11 +29,10 @@
     "typescript": "^5.0.2"
   },
   "dependencies": {
+    "@supercharge/fs": "^3.4.0",
     "@types/bcrypt": "^5.0.0",
-    "@types/ioredis": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/multer": "^1.4.7",
-    "@types/redis": "^4.0.11",
     "@types/uuid": "^9.0.1",
     "bcrypt": "^5.1.0",
     "compression": "^1.7.4",

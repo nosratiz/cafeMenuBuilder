@@ -28,11 +28,16 @@ class AccountController implements Controller {
         next: NextFunction
     ) => {
         const { email, password } = request.body;
-   
-        try {
-            const token = await this.userService.adminLogin(email, password);
 
-            response.status(200).json({ token });
+        try {
+            const result = await this.userService.adminLogin(email, password);
+            console.log(result);
+
+            if (result.message !== '') {
+                return next(new HttpException(result.status, result.message));
+            }
+
+            response.status(200).json({ token: result.data });
         } catch (error) {
             next(new HttpException(500, 'Internal Server Error'));
         }
