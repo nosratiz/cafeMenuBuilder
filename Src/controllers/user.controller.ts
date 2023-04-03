@@ -23,13 +23,14 @@ class UserController implements Controller {
     }
 
     private UserList = async (
-        request: Request,
+        request: Request | any,
         response: Response,
         next: NextFunction
     ) => {
         try {
             const { page = 1, limit = 10 } = request.query;
 
+        
             const users = await this.userService.findAll(
                 Number(page),
                 Number(limit)
@@ -54,7 +55,7 @@ class UserController implements Controller {
             console.log(result);
 
             if (!result.data) {
-               return next(new HttpException(result.status, result.message));
+                return next(new HttpException(result.status, result.message));
             }
 
             response.status(200).json(result.data);

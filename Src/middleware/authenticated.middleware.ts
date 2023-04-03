@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import token from '../utils/token';
-import UserModel from '../models/user.model';
 import Token from '../utils/interfaces/token.interface';
 import HttpException from '../utils/exception/http.exceptions';
 import jwt from 'jsonwebtoken';
@@ -13,7 +12,7 @@ async function authenticatedMiddleware(
     const bearer = req.headers.authorization;
 
     if (!bearer || !bearer.startsWith('Bearer ')) {
-        return next(new HttpException(401, 'Unauthorised'));
+        return next(new HttpException(401, 'unauthorized'));
     }
 
     const accessToken = bearer.split('Bearer ')[1].trim();
@@ -23,23 +22,15 @@ async function authenticatedMiddleware(
         );
 
         if (payload instanceof jwt.JsonWebTokenError) {
-            return next(new HttpException(401, 'Unauthorised'));
+            return next(new HttpException(401, 'unauthorized'));
         }
 
-        const user = await UserModel.findById(payload.id)
-            .select('-password')
-            .exec();
-
-        if (!user) {
-            return next(new HttpException(401, 'Unauthorised'));
-        }
-
-        req.user = user;
+        req.user = payload;
 
         return next();
   
     } catch (error) {
-        return next(new HttpException(401, 'Unauthorised'));
+        return next(new HttpException(401, 'unauthorized'));
     }
 }
 
