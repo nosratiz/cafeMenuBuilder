@@ -13,6 +13,8 @@ import BackgroundJob from './Jobs/BackgroundJob';
 import schedule from 'node-schedule';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './config/swagger.json';
+import useragent from 'express-useragent';
+import { Options } from './utils/Options/CronOptions';
 
 class app {
     public express: Application;
@@ -30,10 +32,12 @@ class app {
     }
 
     private initializeMiddleware(): void {
+        this.express.use(useragent.express());
+
         this.express.use(helmet());
         this.express.use(cors());
         this.express.use(morgan('dev'));
-        this.express.use(express.json());
+        this.express.use(express.json({ limit: '5kb' }));
         this.express.use(express.urlencoded({ extended: false }));
         this.express.use(fileUpload.multerConfig().single('file'));
         this.express.use(compression());
@@ -41,7 +45,11 @@ class app {
             '/uploads',
             express.static(path.join(__dirname, '../uploads'))
         );
-        this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        this.express.use(
+            '/api-docs',
+            swaggerUi.serve,
+            swaggerUi.setup(swaggerDocument)
+        );
     }
 
     private initializeControllers(controllers: Controller[]): void {
@@ -64,8 +72,11 @@ class app {
 
     private InitializeBackgroundJobs(): void {
         const { NODE_ENV } = process.env;
-        if (NODE_ENV === 'production') {
-            schedule.scheduleJob('*/2 * * * * *', BackgroundJob.SendEmail);
+        if (NODE_ENV === Options.production) {
+            schedule.scheduleJob(
+                Options.every2Minutes,
+                BackgroundJob.SendEmail
+            );
         }
     }
 

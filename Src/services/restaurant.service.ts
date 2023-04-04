@@ -1,7 +1,11 @@
 import IPagination from '../utils/interfaces/pagination.interface';
 import RestaurantModel from '../models/restaurant.model';
 import HttpException from '../utils/exception/http.exceptions';
-import RestaurantDto, { IRestaurantDto } from '../dto/RestaurantDto';
+import RestaurantDto, {
+    IRestaurantDto,
+} from '../dto/RestaurantDto';
+import { ILocation } from "../interfaces/ILocation.interface";
+import { IAddress } from "../interfaces/IAddress.interface";
 import Result from '../dto/ResultDto';
 import IResult from '../utils/interfaces/result.interface';
 
@@ -63,8 +67,8 @@ class RestaurantService {
         name: string,
         logo: string,
         description: string,
-        address: any,
-        location: any,
+        address: IAddress,
+        location: ILocation,
         userId: string
     ): Promise<IRestaurantDto> {
         const restaurant = await this.restaurant.create({
@@ -84,10 +88,9 @@ class RestaurantService {
         name: string,
         logo: string,
         description: string,
-        address: any,
-        location: any
+        address: IAddress,
+        location: ILocation
     ): Promise<IResult> {
-       
         const result = new Result();
 
         var restaurant = await this.restaurant

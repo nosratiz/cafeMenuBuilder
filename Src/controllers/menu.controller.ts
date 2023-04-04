@@ -6,6 +6,7 @@ import MenuService from '../services/menu.service';
 import menuValidation from '../validations/menu.validation';
 import validationMiddleware from '../middleware/validation.middleware';
 import menuCache from '../cache/menu.cache';
+import authMiddleware from '../middleware/Auth.middleware';
 
 class MenuController implements Controller {
     public path = '/menu';
@@ -17,7 +18,11 @@ class MenuController implements Controller {
     }
 
     private initializeRoutes() {
-        this.router.get(`${this.path}`, authenticatedMiddleware, this.menuList);
+        this.router.get(
+            `${this.path}`,
+            authenticatedMiddleware,
+            this.menuList
+        );
         this.router.get(
             `${this.path}/:id`,
             authenticatedMiddleware,

@@ -24,7 +24,9 @@ class SeedData {
 
     private async seedUser() {
         if ((await userModel.countDocuments()) == 0) {
+
             var roleId = await roleModel.findOne().select('_id');
+
             await userModel.create({
                 email: 'nimanosrati93@gmail.com',
                 name: 'Nima',

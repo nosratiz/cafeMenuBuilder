@@ -1,5 +1,6 @@
 import { IRestaurant } from '../interfaces/restaurant.interface';
-import { ObjectId } from 'mongoose';
+import { IAddress } from '../interfaces/IAddress.interface';
+import { ILocation } from '../interfaces/ILocation.interface';
 
 class RestaurantDto {
     public mapToRestaurantDto(restaurant: IRestaurant): IRestaurantDto {
@@ -42,15 +43,8 @@ export interface IRestaurantDto {
     name: string;
     logo: string;
     description: string;
-    address: [
-        {
-            state: string;
-            city: string;
-            street: string;
-            phone: string;
-        }
-    ];
-    location: { lat: number; lng: number };
+    address: IAddress;
+    location: ILocation;
     user: { id: string; name: string; family: string };
     createdAt: Date;
     updatedAt: Date;
@@ -63,3 +57,5 @@ export interface IRestaurantListDto {
     createdAt: Date;
     user: { id: string; name: string; family: string };
 }
+
+
